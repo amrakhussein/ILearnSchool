@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using Microsoft.AspNetCore.Identity;
 
-
-namespace IlearnSchool.Api.Models;
+namespace ILearnSchool.Core.Models;
 
 public class ApplicationUser : IdentityUser
 {
@@ -11,4 +11,5 @@ public class ApplicationUser : IdentityUser
 
     [Required, MaxLength(100)]
     public string LastName { get; set; } = null!;
+
 }
