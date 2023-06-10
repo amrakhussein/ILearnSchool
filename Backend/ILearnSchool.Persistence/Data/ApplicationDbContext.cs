@@ -1,4 +1,5 @@
 ﻿using ILearnSchool.Core.Models;
+using ILearnSchool.Persistence.Data.SeedConfig.Entities;
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +17,18 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Enrollment> Enrollments { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+
+        // Configure seed roles
+        builder.ApplyConfiguration(new RolesConfiguration());
+        builder.ApplyConfiguration(new DepartmentConfiguration());
+        builder.ApplyConfiguration(new InstructorConfiguration());
+        builder.ApplyConfiguration(new TraineeConfiguration());
+        builder.ApplyConfiguration(new CourseConfiguration());
+        builder.ApplyConfiguration(new EnrollmentConfiguration());
+        builder.ApplyConfiguration(new CourseResultConfiguration());
 
         // Configure App Entities Relation
         builder.Entity<CourseInstructor>()

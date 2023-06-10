@@ -1,4 +1,4 @@
-﻿namespace ILearnSchool.Persistence.Data;
+﻿namespace ILearnSchool.Persistence.Data.Constants;
 
 public class ConnectionSettings
 {

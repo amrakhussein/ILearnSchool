@@ -1,11 +1,8 @@
 ﻿
 using System.Diagnostics;
 
-using ILearnSchool.Core.Interfaces.Authentication;
-using ILearnSchool.Core.Interfaces.Services;
-using ILearnSchool.Persistence.Authentication;
 using ILearnSchool.Persistence.Data;
-using ILearnSchool.Persistence.Services;
+using ILearnSchool.Persistence.Data.Constants;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,10 +19,6 @@ public static class DepedencyInjection
             // for testing purposes
             .EnableSensitiveDataLogging()
             .LogTo(log => Debug.WriteLine(log)));
-
-        services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
-        services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
-        services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         return services;
     }
