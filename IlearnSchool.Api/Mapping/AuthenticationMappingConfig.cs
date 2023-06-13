@@ -1,6 +1,6 @@
 ﻿using ErrorOr;
 
-using IlearnSchool.Api.Dtos.Authentication;
+using IlearnSchool.Core.Dtos.Authentication;
 
 using ILearnSchool.Core.Features.Authentication.Common;
 

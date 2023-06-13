@@ -1,10 +1,11 @@
 ﻿using ErrorOr;
 
-using IlearnSchool.Api.Dtos.Authentication;
+using IlearnSchool.Core.Dtos.Authentication;
 
+using ILearnSchool.Core.Dtos.Authentication;
+using ILearnSchool.Core.Features.Authentication.Commands.Register;
 using ILearnSchool.Core.Features.Authentication.Common;
-using ILearnSchool.Core.Features.Authentication.Login;
-using ILearnSchool.Core.Features.Authentication.Register;
+using ILearnSchool.Core.Features.Authentication.Queries.Login;
 
 using Mapster;
 
