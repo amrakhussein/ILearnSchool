@@ -1,4 +1,5 @@
 ﻿using ILearnSchool.Core.Models;
+using ILearnSchool.Persistence.Data.SeedConfig.SeedHelper;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -9,11 +10,22 @@ public class TraineeConfiguration : IEntityTypeConfiguration<Trainee>
 {
     public void Configure(EntityTypeBuilder<Trainee> builder)
     {
-        builder.HasData(
-      new Trainee { Id = 1, FirstName = "Laila", LastName = "Mostapha", Age = 18, DepartmentId = 1 },
-      new Trainee { Id = 2, FirstName = "Ali", LastName = "Ahemd", Age = 19, DepartmentId = 2 },
-      new Trainee { Id = 3, FirstName = "Omar", LastName = "Taha", Age = 20, DepartmentId = 3 },
-      new Trainee { Id = 4, FirstName = "Akram", LastName = "Samy", Age = 22, DepartmentId = 4 }
-  );
+        var random = new Random();
+
+        for (int i = 0; i < 20; i++)
+        {
+            int randomAge = random.Next(18, 40); // Random age between 18 and 40
+            int randomIndex = random.Next(0, PersonNamesDummyData.FirstNames.Length);
+            builder.HasData(
+                           new Trainee
+                           {
+                               Id = i + 1, // Starting from ID 1
+                               FirstName = PersonNamesDummyData.FirstNames[randomIndex],
+                               LastName = PersonNamesDummyData.LastNames[randomIndex],
+                               Age = randomAge,
+                               DepartmentId = (i % 4) + 1 // Department IDs from 1 to 4
+                           }
+                );
+        }
     }
 }

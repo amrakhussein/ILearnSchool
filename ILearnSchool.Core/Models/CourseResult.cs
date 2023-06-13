@@ -3,7 +3,7 @@
 public class CourseResult
 {
     public int Id { get; set; }
-    public int Grade { get; set; }
+    public double Grade { get; set; }
 
     public int CourseId { get; set; }
     public Course Course { get; set; } = null!;

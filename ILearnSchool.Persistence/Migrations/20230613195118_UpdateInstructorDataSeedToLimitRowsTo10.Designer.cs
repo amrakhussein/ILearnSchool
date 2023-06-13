@@ -4,6 +4,7 @@ using ILearnSchool.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ILearnSchool.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230613195118_UpdateInstructorDataSeedToLimitRowsTo10")]
+    partial class UpdateInstructorDataSeedToLimitRowsTo10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -689,82 +692,82 @@ namespace ILearnSchool.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 34,
+                            Age = 40,
                             DepartmentId = 1,
-                            FirstName = "Mia",
-                            LastName = "Robinson"
+                            FirstName = "Sophia",
+                            LastName = "Sophia"
                         },
                         new
                         {
                             Id = 2,
-                            Age = 45,
+                            Age = 28,
                             DepartmentId = 2,
-                            FirstName = "Jane",
-                            LastName = "Johnson"
+                            FirstName = "Robert",
+                            LastName = "Robert"
                         },
                         new
                         {
                             Id = 3,
-                            Age = 43,
+                            Age = 35,
                             DepartmentId = 3,
-                            FirstName = "Mia",
-                            LastName = "Robinson"
+                            FirstName = "Sophia",
+                            LastName = "Sophia"
                         },
                         new
                         {
                             Id = 4,
-                            Age = 34,
+                            Age = 42,
                             DepartmentId = 4,
-                            FirstName = "Sophia",
-                            LastName = "Thomas"
+                            FirstName = "Robert",
+                            LastName = "Robert"
                         },
                         new
                         {
                             Id = 5,
-                            Age = 29,
+                            Age = 38,
                             DepartmentId = 1,
-                            FirstName = "Andrew",
-                            LastName = "Martinez"
+                            FirstName = "Matthew",
+                            LastName = "Matthew"
                         },
                         new
                         {
                             Id = 6,
-                            Age = 49,
+                            Age = 46,
                             DepartmentId = 2,
-                            FirstName = "Matthew",
-                            LastName = "Harris"
+                            FirstName = "Ava",
+                            LastName = "Ava"
                         },
                         new
                         {
                             Id = 7,
-                            Age = 48,
+                            Age = 43,
                             DepartmentId = 3,
-                            FirstName = "Andrew",
-                            LastName = "Martinez"
+                            FirstName = "Ava",
+                            LastName = "Ava"
                         },
                         new
                         {
                             Id = 8,
-                            Age = 38,
+                            Age = 31,
                             DepartmentId = 4,
-                            FirstName = "Isabella",
-                            LastName = "Garcia"
+                            FirstName = "Sarah",
+                            LastName = "Sarah"
                         },
                         new
                         {
                             Id = 9,
-                            Age = 43,
+                            Age = 28,
                             DepartmentId = 1,
-                            FirstName = "Ava",
-                            LastName = "Martin"
+                            FirstName = "Joseph",
+                            LastName = "Joseph"
                         },
                         new
                         {
                             Id = 10,
-                            Age = 47,
+                            Age = 38,
                             DepartmentId = 2,
-                            FirstName = "David",
-                            LastName = "Brown"
+                            FirstName = "Robert",
+                            LastName = "Robert"
                         });
                 });
 
@@ -800,162 +803,162 @@ namespace ILearnSchool.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 34,
+                            Age = 24,
                             DepartmentId = 1,
-                            FirstName = "Ava",
-                            LastName = "Martin"
+                            FirstName = "Robert",
+                            LastName = "Robert"
                         },
                         new
                         {
                             Id = 2,
-                            Age = 36,
+                            Age = 22,
                             DepartmentId = 2,
                             FirstName = "Emily",
-                            LastName = "Jones"
+                            LastName = "Emily"
                         },
                         new
                         {
                             Id = 3,
-                            Age = 37,
+                            Age = 20,
                             DepartmentId = 3,
-                            FirstName = "Isabella",
-                            LastName = "Garcia"
+                            FirstName = "David",
+                            LastName = "David"
                         },
                         new
                         {
                             Id = 4,
-                            Age = 26,
+                            Age = 36,
                             DepartmentId = 4,
-                            FirstName = "Robert",
-                            LastName = "Sam"
+                            FirstName = "David",
+                            LastName = "David"
                         },
                         new
                         {
                             Id = 5,
-                            Age = 28,
+                            Age = 34,
                             DepartmentId = 1,
-                            FirstName = "Emily",
-                            LastName = "Jones"
+                            FirstName = "Isabella",
+                            LastName = "Isabella"
                         },
                         new
                         {
                             Id = 6,
-                            Age = 23,
+                            Age = 34,
                             DepartmentId = 2,
-                            FirstName = "Robert",
-                            LastName = "Sam"
+                            FirstName = "David",
+                            LastName = "David"
                         },
                         new
                         {
                             Id = 7,
-                            Age = 24,
+                            Age = 31,
                             DepartmentId = 3,
-                            FirstName = "Sophia",
-                            LastName = "Thomas"
+                            FirstName = "John",
+                            LastName = "John"
                         },
                         new
                         {
                             Id = 8,
-                            Age = 21,
+                            Age = 31,
                             DepartmentId = 4,
-                            FirstName = "Matthew",
-                            LastName = "Harris"
+                            FirstName = "John",
+                            LastName = "John"
                         },
                         new
                         {
                             Id = 9,
                             Age = 26,
                             DepartmentId = 1,
-                            FirstName = "Ava",
-                            LastName = "Martin"
+                            FirstName = "William",
+                            LastName = "William"
                         },
                         new
                         {
                             Id = 10,
-                            Age = 29,
+                            Age = 37,
                             DepartmentId = 2,
-                            FirstName = "William",
-                            LastName = "Anderson"
+                            FirstName = "David",
+                            LastName = "David"
                         },
                         new
                         {
                             Id = 11,
-                            Age = 32,
+                            Age = 30,
                             DepartmentId = 3,
-                            FirstName = "Sophia",
-                            LastName = "Thomas"
+                            FirstName = "David",
+                            LastName = "David"
                         },
                         new
                         {
                             Id = 12,
-                            Age = 30,
+                            Age = 22,
                             DepartmentId = 4,
-                            FirstName = "Christopher",
-                            LastName = "Thompson"
+                            FirstName = "Jane",
+                            LastName = "Jane"
                         },
                         new
                         {
                             Id = 13,
-                            Age = 27,
+                            Age = 38,
                             DepartmentId = 1,
-                            FirstName = "John",
-                            LastName = "Smith"
+                            FirstName = "Olivia",
+                            LastName = "Olivia"
                         },
                         new
                         {
                             Id = 14,
-                            Age = 24,
+                            Age = 36,
                             DepartmentId = 2,
-                            FirstName = "Jane",
-                            LastName = "Johnson"
+                            FirstName = "Daniel",
+                            LastName = "Daniel"
                         },
                         new
                         {
                             Id = 15,
-                            Age = 26,
+                            Age = 32,
                             DepartmentId = 3,
-                            FirstName = "Emma",
-                            LastName = "White"
+                            FirstName = "Robert",
+                            LastName = "Robert"
                         },
                         new
                         {
                             Id = 16,
-                            Age = 28,
+                            Age = 35,
                             DepartmentId = 4,
-                            FirstName = "Olivia",
-                            LastName = "Taylor"
+                            FirstName = "Emily",
+                            LastName = "Emily"
                         },
                         new
                         {
                             Id = 17,
-                            Age = 32,
+                            Age = 36,
                             DepartmentId = 1,
-                            FirstName = "Andrew",
-                            LastName = "Martinez"
+                            FirstName = "Matthew",
+                            LastName = "Matthew"
                         },
                         new
                         {
                             Id = 18,
-                            Age = 22,
+                            Age = 18,
                             DepartmentId = 2,
-                            FirstName = "Michael",
-                            LastName = "Williams"
+                            FirstName = "John",
+                            LastName = "John"
                         },
                         new
                         {
                             Id = 19,
-                            Age = 29,
+                            Age = 39,
                             DepartmentId = 3,
-                            FirstName = "Sophia",
-                            LastName = "Thomas"
+                            FirstName = "William",
+                            LastName = "William"
                         },
                         new
                         {
                             Id = 20,
-                            Age = 19,
+                            Age = 29,
                             DepartmentId = 4,
-                            FirstName = "Joseph",
-                            LastName = "Jackson"
+                            FirstName = "Emma",
+                            LastName = "Emma"
                         });
                 });
 
@@ -988,19 +991,19 @@ namespace ILearnSchool.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cd1cca78-a6a7-4e51-b677-b8928d9fb51d",
+                            Id = "28609d8a-b858-4811-8045-203a4122d2b1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ab6644e8-556f-471e-a06a-d1a16d0a13bb",
+                            Id = "7d166d8e-49b1-4672-9a15-c2cf1af7e2dc",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "e448ce3b-a98f-4bdd-8e60-5b2cbe819500",
+                            Id = "0d76ddaa-35a6-4351-a368-b8698a1c8347",
                             Name = "Guest",
                             NormalizedName = "GUEST"
                         });

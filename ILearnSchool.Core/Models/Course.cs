@@ -6,7 +6,7 @@ public class Course
     public string Name { get; set; } = null!;
     public int Grade { get; set; }
     public int PassingGrade { get; set; }
-    public string Description { get; set; } = null!;
+    public string? Description { get; set; } = null!;
 
     public int DepartmentId { get; set; }
     public Department Department { get; set; } = null!;
