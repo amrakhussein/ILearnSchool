@@ -1,4 +1,4 @@
-﻿namespace IlearnSchool.Api.Dtos.Authentication;
+﻿namespace IlearnSchool.Core.Dtos.Authentication;
 
 public class UserResponseDto
 {
