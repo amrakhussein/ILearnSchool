@@ -1,4 +1,4 @@
-﻿using ILearnSchool.Core.Interfaces.Services;
+﻿using ILearnSchool.Core.Interfaces.Infrastructure.Services;
 
 namespace ILearnSchool.Persistence.Services;
 

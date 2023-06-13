@@ -1,6 +1,6 @@
 ﻿using ILearnSchool.Core.Models;
 
-namespace ILearnSchool.Core.Interfaces.Authentication
+namespace ILearnSchool.Core.Interfaces.Infrastructure.Authentication
 {
     public interface IJwtTokenGenerator
     {

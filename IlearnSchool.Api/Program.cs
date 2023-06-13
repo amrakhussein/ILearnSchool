@@ -1,6 +1,7 @@
 using IlearnSchool.Api;
 
 using ILearnSchool.Core;
+using ILearnSchool.Infrastructure;
 using ILearnSchool.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,7 @@ var app = builder.Build();
 
     app.UseExceptionHandler(errorHandlingPath: "/error");
     app.UseHttpsRedirection();
+    app.UseAuthentication();
     app.UseAuthorization();
     app.MapControllers();
     app.Run();

@@ -1,11 +1,6 @@
 ﻿using IlearnSchool.Api.Errors;
 using IlearnSchool.Api.Mapping;
 
-using ILearnSchool.Core.Models;
-using ILearnSchool.Persistence.Data;
-
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.OpenApi.Models;
 
@@ -33,26 +28,26 @@ public static class DepedencyInjection
             });
         });
 
-        // configure Authentication
-        services.AddAuthentication(o =>
-        {
-            o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        });
+        //// configure Authentication
+        //services.AddAuthentication(o =>
+        //{
+        //    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        //    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        //});
 
-        // configure Identity
-        var builder = services.AddIdentityCore<ApplicationUser>(options =>
-        {
-            // for testing purposes
-            options.SignIn.RequireConfirmedAccount = false;
-            options.Password.RequireDigit = false;
-            options.Password.RequireLowercase = false;
-            options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequiredLength = 1;
-        });
-        builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), services);
-        builder.AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI().AddDefaultTokenProviders();
+        //// configure Identity
+        //var builder = services.AddIdentityCore<ApplicationUser>(options =>
+        //{
+        //    // for testing purposes
+        //    options.SignIn.RequireConfirmedAccount = false;
+        //    options.Password.RequireDigit = false;
+        //    options.Password.RequireLowercase = false;
+        //    options.Password.RequireNonAlphanumeric = false;
+        //    options.Password.RequireUppercase = false;
+        //    options.Password.RequiredLength = 1;
+        //});
+        //builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), services);
+        //builder.AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI().AddDefaultTokenProviders();
 
         // Register Mapster
         services.AddMappings();

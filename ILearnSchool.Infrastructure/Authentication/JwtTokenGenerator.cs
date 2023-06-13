@@ -2,8 +2,8 @@
 using System.Security.Claims;
 using System.Text;
 
-using ILearnSchool.Core.Interfaces.Authentication;
-using ILearnSchool.Core.Interfaces.Services;
+using ILearnSchool.Core.Interfaces.Infrastructure.Authentication;
+using ILearnSchool.Core.Interfaces.Infrastructure.Services;
 using ILearnSchool.Core.Models;
 
 using Microsoft.AspNetCore.Identity;
