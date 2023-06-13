@@ -3,18 +3,34 @@
 using IlearnSchool.Api.Constants.Http;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace IlearnSchool.Api.Controllers;
 
 [ApiController]
 public class ApiController : ControllerBase
 {
-    protected IActionResult Problem(List<Error> errros)
+    protected IActionResult Problem(List<Error> errors)
     {
-        HttpContext.Items[HttpContextItemKeys.Errors] = errros;
+        if (errors.Count is 0) return Problem();
 
-        var firstError = errros[0];
+        if (errors.All(error => error.Type == ErrorType.Validation))
+        {
+            var modelStateDictionary = new ModelStateDictionary();
 
+            foreach (var error in errors)
+            {
+                modelStateDictionary.AddModelError(error.Code, error.Description);
+            }
+
+            return ValidationProblem(modelStateDictionary);
+        }
+
+
+        HttpContext.Items[HttpContextItemKeys.Errors] = errors;
+        var firstError = errors[0];
+
+        // Return suitable standard Problem error upon first error, when all errors are not of validation type
         var statusCode = firstError.Type switch
         {
             ErrorType.NotFound => StatusCodes.Status404NotFound,
