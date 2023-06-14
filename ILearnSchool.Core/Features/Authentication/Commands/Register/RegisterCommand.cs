@@ -1,13 +1,13 @@
 ﻿using ErrorOr;
 
-using ILearnSchool.Core.Features.Authentication.Common;
+using IlearnSchool.Core.Dtos.Authentication;
 
 using MediatR;
 
-namespace ILearnSchool.Core.Features.Authentication.Register;
+namespace ILearnSchool.Core.Features.Authentication.Commands.Register;
 
 public record RegisterCommand(string FirstName,
                               string LastName,
                               string Email,
                               string Password,
-                              string[] Roles) : IRequest<ErrorOr<AuthenticationResult>>;
+                              string[] Roles) : IRequest<ErrorOr<AuthenticatedUserResponseDto>>;

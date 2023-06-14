@@ -1,15 +1,16 @@
 ﻿using ErrorOr;
 
-using ILearnSchool.Core.Features.Authentication.Common;
-using ILearnSchool.Core.Interfaces.Authentication;
+using IlearnSchool.Core.Dtos.Authentication;
+
+using ILearnSchool.Core.Interfaces.Infrastructure.Authentication;
 using ILearnSchool.Core.Interfaces.Persistence;
 using ILearnSchool.Core.ServiceErrors;
 
 using MediatR;
 
-namespace ILearnSchool.Core.Features.Authentication.Login;
+namespace ILearnSchool.Core.Features.Authentication.Queries.Login;
 
-public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
+public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<AuthenticatedUserResponseDto>>
 {
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
     private readonly IUserRepository _userRepository;
@@ -20,7 +21,7 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<Authenticat
         _userRepository = userRepository;
     }
 
-    public async Task<ErrorOr<AuthenticationResult>> Handle(LoginQuery query, CancellationToken cancellationToken)
+    public async Task<ErrorOr<AuthenticatedUserResponseDto>> Handle(LoginQuery query, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByEmailAsync(query.Email);
         if (user is null)
@@ -28,7 +29,7 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<Authenticat
             return Errors.Authentication.InvalidCredentials;
         }
 
-        // check user with correct credentials
+        // Check user with correct credentials
         var hasUserValidated = await _userRepository.ValidatePasswordAsync(user, query.Password, false);
 
         if (!hasUserValidated) return Errors.Authentication.InvalidCredentials;
@@ -36,6 +37,12 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<Authenticat
         // Generate a JWT token for the user
         var token = await _jwtTokenGenerator.GenerateJwtTokenAsync(user);
 
-        return new AuthenticationResult(user, token);
+        return new AuthenticatedUserResponseDto
+        {
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            Token = token
+        };
     }
 }

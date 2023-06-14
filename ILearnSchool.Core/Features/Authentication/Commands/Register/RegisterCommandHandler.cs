@@ -1,8 +1,9 @@
 ﻿using ErrorOr;
 
-using ILearnSchool.Core.Constants;
-using ILearnSchool.Core.Features.Authentication.Common;
-using ILearnSchool.Core.Interfaces.Authentication;
+using IlearnSchool.Core.Dtos.Authentication;
+
+using ILearnSchool.Core.Helper;
+using ILearnSchool.Core.Interfaces.Infrastructure.Authentication;
 using ILearnSchool.Core.Interfaces.Persistence;
 using ILearnSchool.Core.Models;
 using ILearnSchool.Core.ServiceErrors;
@@ -11,9 +12,9 @@ using MediatR;
 
 using Microsoft.AspNetCore.Identity;
 
-namespace ILearnSchool.Core.Features.Authentication.Register;
+namespace ILearnSchool.Core.Features.Authentication.Commands.Register;
 
-public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
+public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<AuthenticatedUserResponseDto>>
 {
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
     private readonly UserManager<ApplicationUser> _userManager;
@@ -28,7 +29,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
         _userRepository = userRepository;
     }
 
-    public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
+    public async Task<ErrorOr<AuthenticatedUserResponseDto>> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByEmailAsync(command.Email);
 
@@ -59,7 +60,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
                 {
                     foreach (var role in command.Roles)
                     {
-                        if (!RoleSettings.Contains(role))
+                        if (!UserRoleChecker.Contains(role))
                         {
                             throw new ArgumentException($"Invalid role '{role}' name");
                         }
@@ -83,8 +84,13 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
             // Generate a JWT token for the new user
             var generatedUserToken = await _jwtTokenGenerator.GenerateJwtTokenAsync(newUser);
 
-            return new AuthenticationResult(newUser,
-                                     generatedUserToken);
+            return new AuthenticatedUserResponseDto
+            {
+                FirstName = newUser.FirstName,
+                LastName = newUser.LastName,
+                Email = newUser.Email,
+                Token = generatedUserToken
+            };
         }
         catch
         {
