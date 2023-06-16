@@ -1,5 +1,6 @@
-﻿using ILearnSchool.Core.Models;
-using ILearnSchool.Persistence.Data.SeedConfig.Entities;
+﻿using System.Reflection;
+
+using ILearnSchool.Core.Models;
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Instructor> Instructors { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<Trainee> Trainees { get; set; }
-    public DbSet<CourseResult> CourseResults { get; set; }
     public DbSet<Enrollment> Enrollments { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
@@ -21,14 +21,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         base.OnModelCreating(builder);
 
-        // Configure seed roles
-        builder.ApplyConfiguration(new RolesConfiguration());
-        builder.ApplyConfiguration(new DepartmentConfiguration());
-        builder.ApplyConfiguration(new InstructorConfiguration());
-        builder.ApplyConfiguration(new TraineeConfiguration());
-        builder.ApplyConfiguration(new CourseConfiguration());
-        builder.ApplyConfiguration(new EnrollmentConfiguration());
-        builder.ApplyConfiguration(new CourseResultConfiguration());
+        // Apply all entity configurations from the current assembly
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
 
         // Configure App Entities Relation
         builder.Entity<CourseInstructor>()
@@ -63,18 +58,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
            .WithMany(d => d.Courses)
            .HasForeignKey(c => c.DepartmentId)
            .OnDelete(DeleteBehavior.NoAction);
-
-        builder.Entity<CourseResult>()
-            .HasOne(cr => cr.Course)
-            .WithMany(c => c.CourseResults)
-            .HasForeignKey(cr => cr.CourseId)
-            .OnDelete(DeleteBehavior.NoAction);
-
-        builder.Entity<CourseResult>()
-            .HasOne(cr => cr.Trainee)
-            .WithMany(t => t.CourseResults)
-            .HasForeignKey(cr => cr.TraineeId)
-            .OnDelete(DeleteBehavior.NoAction);
 
         builder.Entity<Enrollment>()
             .HasOne(e => e.Course)

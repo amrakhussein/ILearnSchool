@@ -3,7 +3,7 @@
 public class Enrollment
 {
     public int Id { get; set; }
-    public bool HasEnrolled { get; set; }
+    public double Grade { get; set; }
 
     public int TraineeId { get; set; }
     public Trainee Trainee { get; set; } = null!;

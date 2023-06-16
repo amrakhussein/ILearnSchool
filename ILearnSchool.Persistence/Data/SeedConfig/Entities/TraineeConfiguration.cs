@@ -12,7 +12,7 @@ public class TraineeConfiguration : IEntityTypeConfiguration<Trainee>
     {
         var random = new Random();
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 10; i++)
         {
             int randomAge = random.Next(18, 40); // Random age between 18 and 40
             int randomIndex = random.Next(0, PersonNamesDummyData.FirstNames.Length);
