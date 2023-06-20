@@ -18,13 +18,13 @@ public class RolesConfiguration : IEntityTypeConfiguration<IdentityRole>
            },
              new IdentityRole
              {
-                 Name = RoleSettings.User,
-                 NormalizedName = RoleSettings.User.ToUpper(),
+                 Name = RoleSettings.Trainee,
+                 NormalizedName = RoleSettings.Trainee.ToUpper(),
              },
                new IdentityRole
                {
-                   Name = RoleSettings.Guest,
-                   NormalizedName = RoleSettings.Guest.ToUpper(),
+                   Name = RoleSettings.Instructor,
+                   NormalizedName = RoleSettings.Instructor.ToUpper(),
                }
            );
     }

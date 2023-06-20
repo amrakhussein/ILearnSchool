@@ -14,7 +14,7 @@ public class UserRoleChecker
     public static bool Contains(string role)
     {
         return string.Equals(role, RoleSettings.Admin, StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(role, RoleSettings.User, StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(role, RoleSettings.Guest, StringComparison.OrdinalIgnoreCase);
+               string.Equals(role, RoleSettings.Instructor, StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(role, RoleSettings.Trainee, StringComparison.OrdinalIgnoreCase);
     }
 }

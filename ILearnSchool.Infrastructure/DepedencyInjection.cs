@@ -4,6 +4,7 @@ using ILearnSchool.Core.Interfaces.Infrastructure.Authentication;
 using ILearnSchool.Core.Interfaces.Infrastructure.Services;
 using ILearnSchool.Core.Interfaces.Persistence;
 using ILearnSchool.Core.Models;
+using ILearnSchool.Infrastructure.Authentication;
 using ILearnSchool.Infrastructure.Persistence;
 using ILearnSchool.Persistence.Authentication;
 using ILearnSchool.Persistence.Data;
@@ -23,22 +24,21 @@ public static class DepedencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, ConfigurationManager configuration)
     {
-        // Authentication
-        //services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
-        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+        // Configure Authentication
+        services.AddScoped<IAccessTokenGenerator, AccessTokenGenerator>();
+        services.AddScoped<IRefreshTokenGenerator, RefreshTokenGenerator>();
         services.AddScoped<IDateTimeProvider, DateTimeProvider>();
 
-        // Configure Authentication
         var jwtSettings = new JwtSettings();
         configuration.Bind(JwtSettings.SectionName, jwtSettings);
         services.AddSingleton(Options.Create(jwtSettings));
 
-        services.AddAuthentication(o =>
+        services.AddAuthentication(options =>
         {
             // Set the default scheme to 'Bearer'
-            o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(o => o.TokenValidationParameters = new TokenValidationParameters
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
             ValidateAudience = true,
@@ -46,6 +46,7 @@ public static class DepedencyInjection
             ValidateIssuerSigningKey = true,
             ValidIssuer = jwtSettings.Issuer,
             ValidAudience = jwtSettings.Audience,
+            ClockSkew = TimeSpan.Zero,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
         });
 
@@ -61,12 +62,16 @@ public static class DepedencyInjection
             options.Password.RequireUppercase = false;
             options.Password.RequiredLength = 1;
         });
+
         builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), services);
         builder.AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI().AddDefaultTokenProviders();
 
         // Register Repositories
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+        services.AddScoped<IInstructorRepository, InstructorRepository>();
+        services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 
         return services;
     }

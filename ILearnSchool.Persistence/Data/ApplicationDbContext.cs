@@ -11,19 +11,16 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
 
     public DbSet<Department> Departments { get; set; }
-    public DbSet<Instructor> Instructors { get; set; }
-    public DbSet<Course> Courses { get; set; }
-    public DbSet<Trainee> Trainees { get; set; }
-    public DbSet<Enrollment> Enrollments { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
         // Apply all entity configurations from the current assembly
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
 
         // Configure App Entities Relation
         builder.Entity<CourseInstructor>()

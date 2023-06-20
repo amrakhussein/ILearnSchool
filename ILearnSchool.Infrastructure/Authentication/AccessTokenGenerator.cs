@@ -11,32 +11,43 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ILearnSchool.Persistence.Authentication;
-
-public class JwtTokenGenerator : IJwtTokenGenerator
+/// <summary>
+/// Generated Access Token Having User Roles
+/// </summary>
+public class AccessTokenGenerator : IAccessTokenGenerator
 {
     private readonly IDateTimeProvider _dateTimeProvider;
     private readonly JwtSettings _jwtSettings;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtOptions, UserManager<ApplicationUser> userManager)
+    public AccessTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtOptions, UserManager<ApplicationUser> userManager)
     {
         _dateTimeProvider = dateTimeProvider;
         _jwtSettings = jwtOptions.Value;
         _userManager = userManager;
     }
 
-    public async Task<string> GenerateJwtTokenAsync(ApplicationUser user)
+    public async Task<string> GenerateAccessTokenAsync(ApplicationUser user)
     {
+        // Generate Access Token
+        var generatedAccessToken = await GenerateJwtTokenAsync(user);
+        string generatedAccessTokenSerialized = new JwtSecurityTokenHandler().WriteToken(generatedAccessToken);
+
+        return generatedAccessTokenSerialized;
+    }
+
+    private async Task<JwtSecurityToken> GenerateJwtTokenAsync(ApplicationUser user)
+    {
+        // Generate user claims
+        var claims = await GenerateClaimsAsync(user.FirstName, user.LastName, user.Email);
+
         // Generate signing credentials
         SigningCredentials signingCredetials = GenerateSigningCredentials();
 
-        // Generate user claims
-        Claim[] claims = await GenerateClaimsAsync(user.FirstName, user.LastName, user.UserName ?? user.Email);
-
         // Generate security tokens
-        JwtSecurityToken securityToken = GenerateSecurityTokens(signingCredetials, claims);
+        JwtSecurityToken securityToken = GenerateSecurityToken(signingCredetials, claims);
 
-        return new JwtSecurityTokenHandler().WriteToken(securityToken);
+        return securityToken;
     }
 
     private SigningCredentials GenerateSigningCredentials()
@@ -49,7 +60,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         return new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
     }
 
-    private JwtSecurityToken GenerateSecurityTokens(SigningCredentials signingCredetials, Claim[] claims)
+    private JwtSecurityToken GenerateSecurityToken(SigningCredentials signingCredetials, List<Claim> claims)
     {
         return new JwtSecurityToken(issuer: _jwtSettings.Issuer,
                                     audience: _jwtSettings.Audience,
@@ -58,20 +69,20 @@ public class JwtTokenGenerator : IJwtTokenGenerator
                                     signingCredentials: signingCredetials);
     }
 
-    private async Task<Claim[]> GenerateClaimsAsync(string firstName, string lastName, string username)
+    private async Task<List<Claim>> GenerateClaimsAsync(string firstName, string lastName, string username)
     {
         var claims = new List<Claim>
-    {
-        new Claim(JwtRegisteredClaimNames.GivenName, firstName),
-        new Claim(JwtRegisteredClaimNames.FamilyName, lastName),
-        new Claim(JwtRegisteredClaimNames.Sub, username.ToString())
-    };
+        {
+            new Claim(JwtRegisteredClaimNames.GivenName, firstName),
+            new Claim(JwtRegisteredClaimNames.FamilyName, lastName),
+            new Claim(JwtRegisteredClaimNames.Sub, username.ToString())
+        };
         var user = await _userManager.FindByNameAsync(username);
         if (user is not null)
         {
             var roles = await _userManager.GetRolesAsync(user);
 
-            // Add role claims
+            // Attach user roles to claims
             if (roles is not null && roles.Count > 0)
             {
                 foreach (var role in roles)
@@ -81,6 +92,6 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             }
         }
 
-        return claims.ToArray();
+        return claims;
     }
 }

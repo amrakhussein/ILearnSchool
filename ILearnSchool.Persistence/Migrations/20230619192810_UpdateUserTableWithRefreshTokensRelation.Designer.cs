@@ -4,6 +4,7 @@ using ILearnSchool.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ILearnSchool.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230619192810_UpdateUserTableWithRefreshTokensRelation")]
+    partial class UpdateUserTableWithRefreshTokensRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,7 +135,7 @@ namespace ILearnSchool.Persistence.Migrations
                         {
                             Id = 1,
                             DepartmentId = 1,
-                            Description = "Sed ut perspiciatis unde omnis totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 1",
                             PassingGrade = 70
@@ -141,7 +144,7 @@ namespace ILearnSchool.Persistence.Migrations
                         {
                             Id = 2,
                             DepartmentId = 2,
-                            Description = "Sed ut perspiciatis unde omnis totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 2",
                             PassingGrade = 50
@@ -153,16 +156,16 @@ namespace ILearnSchool.Persistence.Migrations
                             Description = "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 3",
-                            PassingGrade = 60
+                            PassingGrade = 50
                         },
                         new
                         {
                             Id = 4,
                             DepartmentId = 4,
-                            Description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto",
                             MaxGrade = 100,
                             Name = "Course 4",
-                            PassingGrade = 70
+                            PassingGrade = 50
                         },
                         new
                         {
@@ -171,61 +174,61 @@ namespace ILearnSchool.Persistence.Migrations
                             Description = "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 5",
-                            PassingGrade = 60
+                            PassingGrade = 70
                         },
                         new
                         {
                             Id = 6,
                             DepartmentId = 2,
-                            Description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 6",
-                            PassingGrade = 50
+                            PassingGrade = 70
                         },
                         new
                         {
                             Id = 7,
                             DepartmentId = 3,
-                            Description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "Sed ut perspiciatis unde omnis totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 7",
-                            PassingGrade = 60
+                            PassingGrade = 50
                         },
                         new
                         {
                             Id = 8,
                             DepartmentId = 4,
-                            Description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "Sed ut perspiciatis unde omnis totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 8",
-                            PassingGrade = 60
+                            PassingGrade = 70
                         },
                         new
                         {
                             Id = 9,
                             DepartmentId = 1,
-                            Description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 9",
-                            PassingGrade = 60
+                            PassingGrade = 70
                         },
                         new
                         {
                             Id = 10,
                             DepartmentId = 2,
-                            Description = "Sed ut perspiciatis unde omnis totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto",
                             MaxGrade = 100,
                             Name = "Course 10",
-                            PassingGrade = 60
+                            PassingGrade = 50
                         },
                         new
                         {
                             Id = 11,
                             DepartmentId = 3,
-                            Description = "Sed ut perspiciatis unde omnis totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 11",
-                            PassingGrade = 60
+                            PassingGrade = 50
                         },
                         new
                         {
@@ -240,37 +243,37 @@ namespace ILearnSchool.Persistence.Migrations
                         {
                             Id = 13,
                             DepartmentId = 1,
-                            Description = "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "Sed ut perspiciatis unde omnis totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 13",
-                            PassingGrade = 70
+                            PassingGrade = 50
                         },
                         new
                         {
                             Id = 14,
                             DepartmentId = 2,
-                            Description = "unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto",
+                            Description = "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 14",
-                            PassingGrade = 60
+                            PassingGrade = 70
                         },
                         new
                         {
                             Id = 15,
                             DepartmentId = 3,
-                            Description = "Sed ut perspiciatis unde omnis totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
                             MaxGrade = 100,
                             Name = "Course 15",
-                            PassingGrade = 60
+                            PassingGrade = 50
                         },
                         new
                         {
                             Id = 16,
                             DepartmentId = 4,
-                            Description = "totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+                            Description = "unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto",
                             MaxGrade = 100,
                             Name = "Course 16",
-                            PassingGrade = 70
+                            PassingGrade = 60
                         });
                 });
 
@@ -652,66 +655,66 @@ namespace ILearnSchool.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 47,
+                            Age = 35,
                             DepartmentId = 1,
-                            FirstName = "Christopher",
-                            LastName = "Thompson"
+                            FirstName = "Michael",
+                            LastName = "Williams"
                         },
                         new
                         {
                             Id = 2,
                             Age = 41,
                             DepartmentId = 2,
-                            FirstName = "Robert",
-                            LastName = "Sam"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Age = 46,
-                            DepartmentId = 3,
                             FirstName = "David",
                             LastName = "Brown"
                         },
                         new
                         {
-                            Id = 4,
-                            Age = 36,
-                            DepartmentId = 4,
-                            FirstName = "Emma",
-                            LastName = "White"
+                            Id = 3,
+                            Age = 48,
+                            DepartmentId = 3,
+                            FirstName = "Sarah",
+                            LastName = "Davis"
                         },
                         new
                         {
-                            Id = 5,
-                            Age = 44,
-                            DepartmentId = 1,
+                            Id = 4,
+                            Age = 35,
+                            DepartmentId = 4,
                             FirstName = "Christopher",
                             LastName = "Thompson"
                         },
                         new
                         {
-                            Id = 6,
-                            Age = 28,
-                            DepartmentId = 2,
+                            Id = 5,
+                            Age = 47,
+                            DepartmentId = 1,
                             FirstName = "Emily",
                             LastName = "Jones"
                         },
                         new
                         {
+                            Id = 6,
+                            Age = 31,
+                            DepartmentId = 2,
+                            FirstName = "William",
+                            LastName = "Anderson"
+                        },
+                        new
+                        {
                             Id = 7,
-                            Age = 46,
+                            Age = 49,
                             DepartmentId = 3,
-                            FirstName = "Andrew",
-                            LastName = "Martinez"
+                            FirstName = "Emma",
+                            LastName = "White"
                         },
                         new
                         {
                             Id = 8,
-                            Age = 44,
+                            Age = 47,
                             DepartmentId = 4,
-                            FirstName = "Sarah",
-                            LastName = "Davis"
+                            FirstName = "Ava",
+                            LastName = "Martin"
                         });
                 });
 
@@ -725,6 +728,9 @@ namespace ILearnSchool.Persistence.Migrations
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
@@ -741,6 +747,8 @@ namespace ILearnSchool.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("RefreshTokens");
                 });
@@ -780,92 +788,92 @@ namespace ILearnSchool.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 31,
+                            Age = 21,
                             DepartmentId = 1,
-                            EnrollmentDate = new DateTime(2023, 6, 20, 6, 7, 17, 283, DateTimeKind.Local).AddTicks(8867),
+                            EnrollmentDate = new DateTime(2023, 6, 19, 22, 28, 9, 890, DateTimeKind.Local).AddTicks(3468),
                             FirstName = "Olivia",
                             LastName = "Taylor"
                         },
                         new
                         {
                             Id = 2,
-                            Age = 20,
+                            Age = 32,
                             DepartmentId = 2,
-                            EnrollmentDate = new DateTime(2023, 6, 20, 6, 7, 17, 283, DateTimeKind.Local).AddTicks(8922),
+                            EnrollmentDate = new DateTime(2023, 6, 19, 22, 28, 9, 890, DateTimeKind.Local).AddTicks(3508),
+                            FirstName = "Sarah",
+                            LastName = "Davis"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Age = 21,
+                            DepartmentId = 3,
+                            EnrollmentDate = new DateTime(2023, 6, 19, 22, 28, 9, 890, DateTimeKind.Local).AddTicks(3513),
+                            FirstName = "John",
+                            LastName = "Smith"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Age = 39,
+                            DepartmentId = 4,
+                            EnrollmentDate = new DateTime(2023, 6, 19, 22, 28, 9, 890, DateTimeKind.Local).AddTicks(3518),
+                            FirstName = "Michael",
+                            LastName = "Williams"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Age = 35,
+                            DepartmentId = 1,
+                            EnrollmentDate = new DateTime(2023, 6, 19, 22, 28, 9, 890, DateTimeKind.Local).AddTicks(3522),
                             FirstName = "David",
                             LastName = "Brown"
                         },
                         new
                         {
-                            Id = 3,
-                            Age = 30,
-                            DepartmentId = 3,
-                            EnrollmentDate = new DateTime(2023, 6, 20, 6, 7, 17, 283, DateTimeKind.Local).AddTicks(8928),
+                            Id = 6,
+                            Age = 39,
+                            DepartmentId = 2,
+                            EnrollmentDate = new DateTime(2023, 6, 19, 22, 28, 9, 890, DateTimeKind.Local).AddTicks(3529),
                             FirstName = "William",
                             LastName = "Anderson"
                         },
                         new
                         {
-                            Id = 4,
-                            Age = 32,
-                            DepartmentId = 4,
-                            EnrollmentDate = new DateTime(2023, 6, 20, 6, 7, 17, 283, DateTimeKind.Local).AddTicks(8933),
-                            FirstName = "Jane",
-                            LastName = "Johnson"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Age = 36,
-                            DepartmentId = 1,
-                            EnrollmentDate = new DateTime(2023, 6, 20, 6, 7, 17, 283, DateTimeKind.Local).AddTicks(8937),
-                            FirstName = "Isabella",
-                            LastName = "Garcia"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Age = 34,
-                            DepartmentId = 2,
-                            EnrollmentDate = new DateTime(2023, 6, 20, 6, 7, 17, 283, DateTimeKind.Local).AddTicks(8947),
-                            FirstName = "Andrew",
-                            LastName = "Martinez"
-                        },
-                        new
-                        {
                             Id = 7,
-                            Age = 26,
+                            Age = 36,
                             DepartmentId = 3,
-                            EnrollmentDate = new DateTime(2023, 6, 20, 6, 7, 17, 283, DateTimeKind.Local).AddTicks(9002),
+                            EnrollmentDate = new DateTime(2023, 6, 19, 22, 28, 9, 890, DateTimeKind.Local).AddTicks(3533),
+                            FirstName = "Mia",
+                            LastName = "Robinson"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Age = 38,
+                            DepartmentId = 4,
+                            EnrollmentDate = new DateTime(2023, 6, 19, 22, 28, 9, 890, DateTimeKind.Local).AddTicks(3537),
                             FirstName = "Emma",
                             LastName = "White"
                         },
                         new
                         {
-                            Id = 8,
-                            Age = 24,
-                            DepartmentId = 4,
-                            EnrollmentDate = new DateTime(2023, 6, 20, 6, 7, 17, 283, DateTimeKind.Local).AddTicks(9007),
-                            FirstName = "Isabella",
-                            LastName = "Garcia"
-                        },
-                        new
-                        {
                             Id = 9,
-                            Age = 18,
+                            Age = 27,
                             DepartmentId = 1,
-                            EnrollmentDate = new DateTime(2023, 6, 20, 6, 7, 17, 283, DateTimeKind.Local).AddTicks(9011),
-                            FirstName = "William",
-                            LastName = "Anderson"
+                            EnrollmentDate = new DateTime(2023, 6, 19, 22, 28, 9, 890, DateTimeKind.Local).AddTicks(3556),
+                            FirstName = "Sophia",
+                            LastName = "Thomas"
                         },
                         new
                         {
                             Id = 10,
-                            Age = 32,
+                            Age = 28,
                             DepartmentId = 2,
-                            EnrollmentDate = new DateTime(2023, 6, 20, 6, 7, 17, 283, DateTimeKind.Local).AddTicks(9017),
-                            FirstName = "Christopher",
-                            LastName = "Thompson"
+                            EnrollmentDate = new DateTime(2023, 6, 19, 22, 28, 9, 890, DateTimeKind.Local).AddTicks(3562),
+                            FirstName = "Matthew",
+                            LastName = "Harris"
                         });
                 });
 
@@ -898,19 +906,19 @@ namespace ILearnSchool.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1b8344f9-a916-40aa-bd69-cc47e3149adf",
+                            Id = "2fefb998-9848-495f-a736-92fde64369f5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "f4be1f92-a841-493c-a2bb-ff26518477de",
+                            Id = "8e779fc3-dfa9-43d3-8b19-071fd901f723",
                             Name = "Trainee",
                             NormalizedName = "TRAINEE"
                         },
                         new
                         {
-                            Id = "df01c297-6116-44bd-bd4a-bdd133c696c6",
+                            Id = "bf7855b1-b909-493c-b01b-58d2a370a970",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         });
@@ -1082,6 +1090,13 @@ namespace ILearnSchool.Persistence.Migrations
                     b.Navigation("Department");
                 });
 
+            modelBuilder.Entity("ILearnSchool.Core.Models.RefreshToken", b =>
+                {
+                    b.HasOne("ILearnSchool.Core.Models.ApplicationUser", null)
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
             modelBuilder.Entity("ILearnSchool.Core.Models.Trainee", b =>
                 {
                     b.HasOne("ILearnSchool.Core.Models.Department", "Department")
@@ -1142,6 +1157,11 @@ namespace ILearnSchool.Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ILearnSchool.Core.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("RefreshTokens");
                 });
 
             modelBuilder.Entity("ILearnSchool.Core.Models.Course", b =>
