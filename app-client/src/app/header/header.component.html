@@ -1,0 +1,47 @@
+<header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <div class="global-nav">
+            <a mat-button routerLink="/home">
+                <h1>ILearnSchool</h1></a
+      >
+      <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+      <a mat-button routerLink="/instructors" routerLinkActive="active"
+        >Our Instructors</a
+      >
+      <a mat-button routerLink="/departments" routerLinkActive="active"
+      >Our Departments</a
+      >
+    </div>
+
+      <input [(ngModel)]="search" class="search" placeholder="Go Search!" type="text" />
+
+      <div class="auth-nav">
+        <ng-container *ngIf="userAuthenticated">
+          <ng-container
+            *ngTemplateOutlet="authenticatedUserNavLinks"
+          ></ng-container>
+        </ng-container>
+        <ng-container *ngIf="!userAuthenticated">
+          <ng-container
+            *ngTemplateOutlet="unauthenticatedUserNavLinks"
+          ></ng-container>
+        </ng-container>
+      </div>
+      
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <ng-template #authenticatedUserNavLinks>
+    <!-- <a class="mat-button mat-inline-block"> -->
+      <span class="mat-text-light user-role">{{ userRole }}</span>
+    <!-- </a> -->
+    <a routerLinkActive="auth-nav-links-active" *ngIf="userRole === 'Admin'" routerLink="/admin-dashboard">Dashboard</a>
+    <a routerLinkActive="auth-nav-links-active" routerLink="/login" (click)="logout()">Logout</a>
+  </ng-template>
+
+  <ng-template #unauthenticatedUserNavLinks>
+    <a mat-button routerLink="/login" routerLinkActive="auth-nav-links-active">Login</a>
+    <a mat-button routerLink="/register" routerLinkActive="auth-nav-links-active">Register</a>
+  </ng-template>
+</header>
